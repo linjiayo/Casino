@@ -75,13 +75,13 @@ public class PokerMain implements GameInterface {
         exitLobby = null;
     }
 
-    public static void main(String[] args) {
-
-        Account acc1 = new Account("one", "2", 1000);
-        Account acc2 = new Account("two", "2", 1000);
-        PokerMain poker = new PokerMain(acc1, acc2);
-        poker.run();
-    }
+//    public static void main(String[] args) {
+//
+//        Account acc1 = new Account("one", "2", 1000);
+//        Account acc2 = new Account("two", "2", 1000);
+//        PokerMain poker = new PokerMain(acc1, acc2);
+//        poker.run();
+//    }
 
     private void handleState(PokerState state, PokerPlayer player) {
         Account acc = player.getArcadeAccount();

@@ -3,7 +3,9 @@ package com.github.zipcodewilmington.casino;
 import com.github.zipcodewilmington.Casino;
 import com.github.zipcodewilmington.utils.TheScanner;
 
+import java.io.*;
 import java.util.*;
+
 import static com.github.zipcodewilmington.casino.ActiveAccount.*;
 
 
@@ -16,7 +18,7 @@ public class Account {
     private String accountName;
     private String password;
     private int balance;
-    static Map<String, Account> allAccounts = new HashMap<>();
+    public static Map<String, Account> allAccounts = new HashMap<>();
 
 
     //CONSTRUCTORS
@@ -194,5 +196,38 @@ public class Account {
             }
         }
         return account.getBalance();
+    }
+
+    public static List<String[]> createAccountCsvData(Map<String, Account> accountMap) {
+        List<String[]> res = new ArrayList<>();
+        for (Account account : accountMap.values()) {
+            String[] data = new String[3];
+            data[0] = account.getAccountName();
+            data[1] = account.getPassword();
+            data[2] = String.valueOf(account.getBalance());
+            res.add(data);
+        }
+        return res;
+    }
+    public static void writeAccountsToFile(List<String[]> data) throws IOException {
+        try {
+            File csvFile = new File("./accounts.csv");
+            FileWriter writer = new FileWriter(csvFile);
+            for (String[] lines : data) {
+                StringBuilder line = new StringBuilder();
+                for (int i = 0; i < lines.length; i++) {
+                    line.append(lines[i]);
+                    if (i != lines.length -1) {
+                        line.append(',');
+                    }
+                }
+                line.append("\n");
+                writer.write(line.toString());
+            }
+            writer.flush();
+            writer.close();
+        } catch (IOException e) {
+            throw new IOException();
+        }
     }
 }

@@ -1,13 +1,14 @@
 package com.github.zipcodewilmington;
 
-import com.github.zipcodewilmington.casino.games.roulette.RouletteEngine;
+import java.io.IOException;
 
-import java.util.Random;
-import java.util.Scanner;
+import com.github.zipcodewilmington.casino.Account;
+
+import java.util.List;
+
 
 public class MainApplication {
-    public static void main(String[] args) {
-
+    public static void main(String[] args) throws IOException {
         new Casino().run();
     }
 }
